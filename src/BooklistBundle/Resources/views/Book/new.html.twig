@@ -1,12 +1,11 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h2>Création de l'entrée du livre</h2>
+    <h2>{% trans %}title.book.new{% endtrans %}</h2>
 
-    <p>Vous pouvez rentrer l'isbn ici puis valider pour cmopléter les autres champs</p>
+    <p>{% trans %}form.isbn.help{% endtrans %}</p>
     {{ form(form_isbn, { 'style': 'inline' }) }}
 
-    <h3>Données du livre</h3>
+    <h3>{% trans %}title.book.datas{% endtrans %}</h3>
     {{ form(form, { 'style': 'horizontal' }) }}
-
 {% endblock %}

@@ -6,15 +6,17 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class BooklistExtension extends \Twig_Extension {
 
-    protected $bundle, $webpathResolver;
+    protected $bundle, $webpathResolver, $translator;
 
     public function __construct(ContainerInterface $container) {
         $this->bundle = $container->get('kernel')->getBundle('BooklistBundle');
         $this->webpathResolver = $container->get('booklist.webpath_resolver');
+        $this->translator = $container->get('translator');
     }
 
     public function getFilters() {
         return array(
+            new \Twig_SimpleFilter('bool2human', array($this, 'bool2humanFilter')),
             new \Twig_SimpleFilter('editor', array($this, 'editorFilter')),
         );
     }
@@ -75,6 +77,14 @@ class BooklistExtension extends \Twig_Extension {
         }
 
         return $name;
+    }
+
+    public function bool2humanFilter($bool) {
+        if ($bool) {
+            return $this->translator->trans('Yes');
+        } else {
+            return $this->translator->trans('No');
+        }
     }
 
     public function getName() {

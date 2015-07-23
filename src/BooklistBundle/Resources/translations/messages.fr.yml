@@ -4,6 +4,18 @@ No: Non
 
 Show: Voir
 Edit: Modifier
+Remove: Supprimer
+Cancel: Annuler
+Back to the list: Retour à la liste
+
+title:
+    book:
+        list: Liste des livres
+        edit: Modification de l'entrée du livre
+        new: Création de l'entrée du livre
+        datas: Données du livre
+        show: Fiche de %name%
+    writer.show: Fiche de %name%
 
 show.author.books: Voir les livres de %name%
 show.book: Voir la fiche de %name%
@@ -20,9 +32,11 @@ book:
         used: Utilisé
         old: Jauni
     toSell: À donner
+    toSell.msg: Ce livre est à donner !
 
 form:
     new_book.submit: Ajouter le livre
     isbn:
+        help: Vous pouvez rentrer l'ISBN ici puis valider pour compléter les autres champs.
         input: 'ISBN : 978...'
         submit: Compléter les données

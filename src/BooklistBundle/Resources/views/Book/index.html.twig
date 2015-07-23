@@ -1,17 +1,17 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h2>Liste des livres</h2>
+    <h2>{% trans %}title.book.list{% endtrans %}</h2>
 
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Titre</th>
-                <th>Auteur</th>
-                <th>Editeur</th>
-                <th>Etat</th>
-                <th>À donner</th>
-                <th>Actions</th>
+                <th>{% trans %}book.title{% endtrans %}</th>
+                <th>{% trans %}book.author{% endtrans %}</th>
+                <th>{% trans %}book.editor{% endtrans %}</th>
+                <th>{% trans %}book.quality{% endtrans %}</th>
+                <th>{% trans %}book.toSell{% endtrans %}</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -33,13 +33,7 @@
                     </td>
                     <td>{{ entity.editor | editor | raw }}</td>
                     <td>{% include "BooklistBundle:tools:quality.html.twig" %}</td>
-                    <td>
-                        {% if entity.toSell %}
-                            {% trans %}Yes{% endtrans %}
-                        {% else %}
-                            {% trans %}No{% endtrans %}
-                        {% endif %}
-                    </td>
+                    <td>{{ entity.toSell | bool2human }}</td>
                     <td>
                         <div class="btn-group">
                             <a href="{{ path('book_show', { 'id': entity.id }) }}" title="{% trans %}Show{% endtrans %}" class="btn btn-primary btn-xs">

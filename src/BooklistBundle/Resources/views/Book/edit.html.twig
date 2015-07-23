@@ -1,16 +1,18 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h2>Modification de l'entrée du livre</h2>
+    <h2>{% trans %}title.book.edit{% endtrans %}</h2>
 
-    <h3>Données du livre</h3>
+    <h3>{% trans %}title.book.datas{% endtrans %}</h3>
     {{ form(form, { 'style': 'horizontal' }) }}
 
     <div class="btn-group">
         <a href="{{ path('book_show', { 'id': entity.id }) }}" class="btn btn-primary">
             {{ icon('chevron-left') }}
-            Annuler
+            {% trans %}Cancel{% endtrans %}
         </a>
-        <a href="{{ path('book_delete', { 'id': entity.id }) }}" class="btn btn-danger">Supprimer</a>
+        <a href="{{ path('book_delete', { 'id': entity.id }) }}" class="btn btn-danger">
+            {% trans %}Remove{% endtrans %}
+        </a>
     </div>
 {% endblock %}
