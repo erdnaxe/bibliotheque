@@ -31,7 +31,7 @@ class BooklistExtension extends \Twig_Extension {
      */
     private function constructImage($img, $alt = '', $height = '16') {
         $asset_url = $this->webpathResolver->getPath($this->bundle, 'images', $img);
-        return '<img src="' . $asset_url . '" alt="' . $alt . '" height="' . $height . '" />';
+        return '<img src="' . $asset_url . '" alt="' . $alt . '" height="' . $height . '" />&nbsp;';
     }
 
     /**
@@ -41,42 +41,40 @@ class BooklistExtension extends \Twig_Extension {
      * @return String Code HTML
      */
     public function editorFilter($name) {
+        $code = str_replace(array(
+            'Pocket',
+            'Folio',
+            'Livre de poche'
+                ), array(
+            $this->constructImage('editor/pocket.png', 'Pocket'),
+            $this->constructImage('editor/folio.png', 'Folio'),
+            $this->constructImage('editor/livre_de_poche.png', 'Livre de poche')
+                ), $name);
+
         switch ($name) {
             case 'GF Flammarion':
-                $name = $this->constructImage('editor/gf_flammarion.png', 'GF Flammarion');
-                break;
-
-            case 'Folio':
-                $name = $this->constructImage('editor/folio.png', 'Folio');
-                break;
-
-            case 'Folio classique':
-                $name = $this->constructImage('editor/folio_classique.png', 'Folio classique');
+                $code = $this->constructImage('editor/gf_flammarion.png', 'GF Flammarion');
                 break;
 
             case 'Folio plus classique':
-                $name = $this->constructImage('editor/folio_plus_classique.png', 'Folio plus classique');
-                break;
-
-            case 'Pocket':
-                $name = $this->constructImage('editor/pocket.png', 'Pocket');
+                $code = $this->constructImage('editor/folio_plus_classique.png', 'Folio plus classique');
                 break;
 
             case 'Biblio collège':
-                $name = $this->constructImage('editor/hachette.png');
-                $name .= ' <span style = "background-color:#00B8E6;padding:2px;color:#FFFFFF;font-family:serif">bibliocollège</span>';
+                $code = $this->constructImage('editor/hachette.png');
+                $code .= ' <span style = "background-color:#00B8E6;padding:2px;color:#FFFFFF;font-family:serif">bibliocollège</span>';
                 break;
 
             case 'Biblio lycée':
-                $name = $this->constructImage('editor/hachette.png');
-                $name .= ' <span style = "background-color:#db0c5e;padding:2px;color:#FFFFFF;font-family:serif">bibliolycée</span>';
+                $code = $this->constructImage('editor/hachette.png');
+                $code .= ' <span style = "background-color:#db0c5e;padding:2px;color:#FFFFFF;font-family:serif">bibliolycée</span>';
                 break;
 
             default:
                 break;
         }
 
-        return $name;
+        return '<span style = "font-family:serif">' . $code . '</span>';
     }
 
     public function bool2humanFilter($bool) {

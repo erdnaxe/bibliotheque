@@ -244,34 +244,4 @@ class BookController extends Controller {
         return $book;
     }
 
-    /**
-     * Creates a form to edit a Book entity.
-     *
-     * @param Book $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createSearchForm() {
-        $form = $this->createForm(null, null, array(
-            'action' => $this->generateUrl('list'),
-            'method' => 'GET',
-        ));
-
-        $builder->add(
-                'value', 'text', array(
-            'attr' => array(
-                'input_group' => array(
-                    'prepend' => '.icon-cloud',
-                    'append' => '.icon-off',
-                    'size' => 'small'
-                )
-            )
-                )
-        );
-
-        $form->add('submit', 'submit', array('label' => 'Modifier'));
-
-        return $form;
-    }
-
 }
