@@ -1,0 +1,50 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h2>Fiche de {{ name }}</h2>
+
+    <h3>Listes des livres</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Editeur</th>
+                <th>Etat</th>
+                <th>À donner</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('book_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
+                    <td>{{ entity.editor | editor | raw }}</td>
+                    <td>{% include "BooklistBundle:tools:quality.html.twig" %}</td>
+                    <td>
+                        {% if entity.toSell %}
+                            Oui
+                        {% else %}
+                            Non
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{{ path('book_show', { 'id': entity.id }) }}" title="Voir" class="btn btn-primary btn-xs">
+                                <span class="glyphicon glyphicon-zoom-in"> </span>
+                            </a>
+                            <a href="{{ path('book_edit', { 'id': entity.id }) }}" title="Modifier" class="btn btn-default btn-xs">
+                                <span class="glyphicon glyphicon-edit"> </span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('book_list') }}" class="btn btn-primary">
+        {{ icon('chevron-left') }}
+        Retour à la liste
+    </a>
+{% endblock %}

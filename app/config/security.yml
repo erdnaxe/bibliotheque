@@ -1,0 +1,31 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        in_memory:
+            memory:
+                users:
+                    erdnaxe:
+                        password: $2a$12$Wbeq7aZGGq8xvEEILHZocupBix.NQY8FIHYV2O8KpDEOpuc5fYQ26
+                        roles: 'ROLE_USER'
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            http_basic: ~
+            
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
+
+    access_control:
+            - { path: ^/new, roles: ROLE_USER }
+            - { path: ^/edit, roles: ROLE_USER }

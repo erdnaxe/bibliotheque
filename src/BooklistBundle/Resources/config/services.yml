@@ -1,0 +1,11 @@
+services:
+    app.twig_extension:
+        class: BooklistBundle\Twig\BooklistExtension
+        public: false
+        arguments: 
+            - @service_container
+        tags:
+            - { name: twig.extension }
+
+    booklist.webpath_resolver:
+        class: BooklistBundle\WebPathResolver

@@ -1,0 +1,7 @@
+#BooklistBunlde\Entity\Book:
+#    properties:
+#        isbn:
+#            - Isbn:
+#                isbn10: true
+#                isbn13: true
+#                bothIsbnMessage: Cette valeur n'est pas de type ISBN-10 et/ou de type ISBN-13.

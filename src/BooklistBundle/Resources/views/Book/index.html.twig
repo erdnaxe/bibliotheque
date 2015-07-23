@@ -1,0 +1,57 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h2>Liste des livres</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Editeur</th>
+                <th>Etat</th>
+                <th>À donner</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td>
+                        <a href="{{ path('book_show', { 'id': entity.id }) }}"
+                           title="{% trans with {'%name%': entity.title} %}show.book{% endtrans %}">
+                            {{ entity.title }}
+                        </a>
+                    </td>
+                    <td>
+                        {% if entity.writer %}
+                            <a href="{{ path('writer_show', { 'name': entity.writer }) }}" 
+                               title="{% trans with {'%name%': entity.writer} %}show.author.books{% endtrans %}">
+                                {{ entity.writer }}
+                            </a>
+                        {% endif %}
+                    </td>
+                    <td>{{ entity.editor | editor | raw }}</td>
+                    <td>{% include "BooklistBundle:tools:quality.html.twig" %}</td>
+                    <td>
+                        {% if entity.toSell %}
+                            {% trans %}Yes{% endtrans %}
+                        {% else %}
+                            {% trans %}No{% endtrans %}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{{ path('book_show', { 'id': entity.id }) }}" title="{% trans %}Show{% endtrans %}" class="btn btn-primary btn-xs">
+                                <span class="glyphicon glyphicon-zoom-in"> </span>
+                            </a>
+                            <a href="{{ path('book_edit', { 'id': entity.id }) }}" title="{% trans %}Edit{% endtrans %}" class="btn btn-default btn-xs">
+                                <span class="glyphicon glyphicon-edit"> </span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

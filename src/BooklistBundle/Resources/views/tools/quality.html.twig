@@ -1,0 +1,11 @@
+{% if entity.quality == 4 %}
+    {{ label_danger('book.qualities.old' | trans) }}
+{% elseif entity.quality == 3 %}
+    {{ label_warning('book.qualities.used' | trans) }}
+{% elseif entity.quality == 2 %}
+    {{ label_info('book.qualities.medium' | trans) }}
+{% elseif entity.quality == 1 %}
+    {{ label_primary('book.qualities.good' | trans) }}
+{% elseif entity.quality == 0 %}
+    {{ label_success('book.qualities.new' | trans) }}
+{% endif %}

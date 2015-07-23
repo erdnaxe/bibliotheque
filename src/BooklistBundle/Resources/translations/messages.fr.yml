@@ -1,0 +1,28 @@
+Token: Jeton
+Yes: Oui
+No: Non
+
+Show: Voir
+Edit: Modifier
+
+show.author.books: Voir les livres de %name%
+show.book: Voir la fiche de %name%
+
+book:
+    title: Titre
+    author: Auteur
+    editor: Editeur
+    quality: Etat du livre
+    qualities:
+        new: Neuf
+        good: Bon
+        medium: Moyen
+        used: Utilisé
+        old: Jauni
+    toSell: À donner
+
+form:
+    new_book.submit: Ajouter le livre
+    isbn:
+        input: 'ISBN : 978...'
+        submit: Compléter les données

@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h2>Modification de l'entrée du livre</h2>
+
+    <h3>Données du livre</h3>
+    {{ form(form, { 'style': 'horizontal' }) }}
+
+    <div class="btn-group">
+        <a href="{{ path('book_show', { 'id': entity.id }) }}" class="btn btn-primary">
+            {{ icon('chevron-left') }}
+            Annuler
+        </a>
+        <a href="{{ path('book_delete', { 'id': entity.id }) }}" class="btn btn-danger">Supprimer</a>
+    </div>
+{% endblock %}

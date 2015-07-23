@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Bibliothèque{% endblock %}</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+
+        <!-- Bootstrap -->
+        <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
+
+        <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
+        {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+
+        {% block stylesheets %}
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('book_list') }}">Gestion de la Bibliothèque</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    {{ knp_menu_render('BooklistBundle:Builder:mainMenu', { 'style': 'navbar' }) }}
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Rechercher un livre...">
+                        </div>
+                        <button type="submit" class="btn btn-default">Rechercher</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}
+
+            {% block body %}
+            {% endblock %}
+
+            <p style="margin-top: 30px;font-size: 85%;">
+                &copy; {{ "now"|date("Y") }} Gestion de la bibliothèque
+                - <a href="#top">Revenir en haut</a>
+            </p>
+        </div>
+
+        <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <!-- Include all JavaScripts, compiled by Assetic -->
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
+    </body>
+</html>

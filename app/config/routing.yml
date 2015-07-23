@@ -1,0 +1,4 @@
+booklist:
+    resource: "@BooklistBundle/Controller/"
+    type:     annotation
+    prefix:   /

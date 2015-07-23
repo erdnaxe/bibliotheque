@@ -1,0 +1,50 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h2>{{ entity.title }}<small> de {{ entity.writer }}</small></h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ entity.title }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ entity.writer }}</td>
+            </tr>
+            <tr>
+                <th>Editeur</th>
+                <td>{{ entity.editor }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>
+                    {% if entity.quality == 4 %}
+                        {{ label_danger('Vieux') }}
+                    {% elseif entity.quality == 3 %}
+                        {{ label_warning('Utilisé') }}
+                    {% elseif entity.quality == 2 %}
+                        {{ label_info('Moyen') }}
+                    {% elseif entity.quality == 1 %}
+                        {{ label_primary('Bon') }}
+                    {% elseif entity.quality == 0 %}
+                        {{ label_success('Neuf') }}
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    {% if entity.toSell %}
+        <p class="lead">Ce livre est à donner !</p>
+    {% endif %}
+
+    <div class="btn-group">
+        <a href="{{ path('book_list') }}" class="btn btn-primary">
+            {{ icon('chevron-left') }}
+            Retour à la liste
+        </a>
+        <a href="{{ path('book_edit', { 'id': entity.id }) }}" class="btn btn-default">Modification</a>
+    </div>
+{% endblock %}
