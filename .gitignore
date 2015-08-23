@@ -31,3 +31,7 @@
 # Composer PHAR
 /composer.phar
 /nbproject
+
+#other
+*~
+app/data.db3
