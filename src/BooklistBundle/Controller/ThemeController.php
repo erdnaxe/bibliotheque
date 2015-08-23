@@ -7,21 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use BooklistBundle\Entity\Writer;
-use BooklistBundle\Form\WriterType;
+use BooklistBundle\Entity\Theme;
+use BooklistBundle\Form\ThemeType;
 
 /**
- * Writer controller.
+ * Theme controller.
  *
- * @Route("/writer")
+ * @Route("/theme")
  */
-class WriterController extends Controller
+class ThemeController extends Controller
 {
 
     /**
-     * Lists all Writer entities.
+     * Lists all Theme entities.
      *
-     * @Route("/", name="writer")
+     * @Route("/", name="theme")
      * @Method("GET")
      * @Template()
      */
@@ -29,22 +29,22 @@ class WriterController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BooklistBundle:Writer')->findAll();
+        $entities = $em->getRepository('BooklistBundle:Theme')->findAll();
 
         return array(
             'entities' => $entities,
         );
     }
     /**
-     * Creates a new Writer entity.
+     * Creates a new Theme entity.
      *
-     * @Route("/", name="writer_create")
+     * @Route("/", name="theme_create")
      * @Method("POST")
-     * @Template("BooklistBundle:Writer:new.html.twig")
+     * @Template("BooklistBundle:Theme:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity = new Writer();
+        $entity = new Theme();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -53,7 +53,7 @@ class WriterController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('writer_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('theme_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -63,16 +63,16 @@ class WriterController extends Controller
     }
 
     /**
-     * Creates a form to create a Writer entity.
+     * Creates a form to create a Theme entity.
      *
-     * @param Writer $entity The entity
+     * @param Theme $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Writer $entity)
+    private function createCreateForm(Theme $entity)
     {
-        $form = $this->createForm(new WriterType(), $entity, array(
-            'action' => $this->generateUrl('writer_create'),
+        $form = $this->createForm(new ThemeType(), $entity, array(
+            'action' => $this->generateUrl('theme_create'),
             'method' => 'POST',
         ));
 
@@ -82,15 +82,15 @@ class WriterController extends Controller
     }
 
     /**
-     * Displays a form to create a new Writer entity.
+     * Displays a form to create a new Theme entity.
      *
-     * @Route("/new", name="writer_new")
+     * @Route("/new", name="theme_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Writer();
+        $entity = new Theme();
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -100,9 +100,9 @@ class WriterController extends Controller
     }
 
     /**
-     * Finds and displays a Writer entity.
+     * Finds and displays a Theme entity.
      *
-     * @Route("/{id}", name="writer_show")
+     * @Route("/{id}", name="theme_show")
      * @Method("GET")
      * @Template()
      */
@@ -110,10 +110,10 @@ class WriterController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BooklistBundle:Writer')->find($id);
+        $entity = $em->getRepository('BooklistBundle:Theme')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Writer entity.');
+            throw $this->createNotFoundException('Unable to find Theme entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -125,9 +125,9 @@ class WriterController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Writer entity.
+     * Displays a form to edit an existing Theme entity.
      *
-     * @Route("/{id}/edit", name="writer_edit")
+     * @Route("/{id}/edit", name="theme_edit")
      * @Method("GET")
      * @Template()
      */
@@ -135,10 +135,10 @@ class WriterController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BooklistBundle:Writer')->find($id);
+        $entity = $em->getRepository('BooklistBundle:Theme')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Writer entity.');
+            throw $this->createNotFoundException('Unable to find Theme entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -152,16 +152,16 @@ class WriterController extends Controller
     }
 
     /**
-    * Creates a form to edit a Writer entity.
+    * Creates a form to edit a Theme entity.
     *
-    * @param Writer $entity The entity
+    * @param Theme $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Writer $entity)
+    private function createEditForm(Theme $entity)
     {
-        $form = $this->createForm(new WriterType(), $entity, array(
-            'action' => $this->generateUrl('writer_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new ThemeType(), $entity, array(
+            'action' => $this->generateUrl('theme_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -170,20 +170,20 @@ class WriterController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Writer entity.
+     * Edits an existing Theme entity.
      *
-     * @Route("/{id}", name="writer_update")
+     * @Route("/{id}", name="theme_update")
      * @Method("PUT")
-     * @Template("BooklistBundle:Writer:edit.html.twig")
+     * @Template("BooklistBundle:Theme:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BooklistBundle:Writer')->find($id);
+        $entity = $em->getRepository('BooklistBundle:Theme')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Writer entity.');
+            throw $this->createNotFoundException('Unable to find Theme entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -193,7 +193,7 @@ class WriterController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('writer_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('theme_edit', array('id' => $id)));
         }
 
         return array(
@@ -203,9 +203,9 @@ class WriterController extends Controller
         );
     }
     /**
-     * Deletes a Writer entity.
+     * Deletes a Theme entity.
      *
-     * @Route("/{id}", name="writer_delete")
+     * @Route("/{id}", name="theme_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -215,21 +215,21 @@ class WriterController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('BooklistBundle:Writer')->find($id);
+            $entity = $em->getRepository('BooklistBundle:Theme')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Writer entity.');
+                throw $this->createNotFoundException('Unable to find Theme entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('writer'));
+        return $this->redirect($this->generateUrl('theme'));
     }
 
     /**
-     * Creates a form to delete a Writer entity by id.
+     * Creates a form to delete a Theme entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -238,7 +238,7 @@ class WriterController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('writer_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('theme_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
