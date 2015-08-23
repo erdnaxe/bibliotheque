@@ -57,6 +57,20 @@ class Book {
     private $toSell;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", nullable=true)
+     */
+    private $comment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="summary", type="text", nullable=true)
+     */
+    private $summary;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -170,4 +184,50 @@ class Book {
         return $this->toSell;
     }
 
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     * @return Book
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string 
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set summary
+     *
+     * @param string $summary
+     * @return Book
+     */
+    public function setSummary($summary)
+    {
+        $this->summary = $summary;
+
+        return $this;
+    }
+
+    /**
+     * Get summary
+     *
+     * @return string 
+     */
+    public function getSummary()
+    {
+        return $this->summary;
+    }
 }
